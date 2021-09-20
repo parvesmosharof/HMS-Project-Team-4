@@ -3,6 +3,9 @@
 #include<istream>
 #include<fstream>
 #include<stdlib.h>
+#define ROWV 4
+#define MAX_LIMIT 100
+#define COLMNV 10
 using namespace std;
 
 void admin();
@@ -12,6 +15,11 @@ void user_login();
 void registration(string text, string fileName, void (*login)());
 void admin_panel(string username);
 void user_panel(string username);
+void PatientInformationAdd();
+void PatientInformationView();
+void DoctorInformationAdd();
+
+string header = "********************************************************";
 
 int main() {
     int choice;
@@ -111,17 +119,22 @@ void admin_login() {
 
     ifstream input("admin.txt");
 
-    while (input>>uname>>pass) {
-        if(uname == username && pass == password) {
-            is_exists = 1;
+    while (input>>uname>>pass)
+        {
+            if(uname == username && pass == password)
+            {
+                is_exists = 1;
+            }
         }
-    }
     input.close();
 
-    if (is_exists) {
-        admin_panel(username);
-    } else {
-        cout<<"Invalid credentials. Try again !\n";
+    if (is_exists)
+        {
+            admin_panel(username);
+        }
+    else
+    {
+        cout<<"Invalid Login. Try again !\n";
         cout<<"Press enter to continue\n";
         cin.get();
         cin.get();
@@ -148,30 +161,37 @@ void user_login() {
     }
     input.close();
 
-    if (is_exists) {
-        user_panel(username);
-    } else {
+    if (is_exists)
+        {
+            user_panel(username);
+        }
+    else
+        {
         cout<<"Invalid credentials. Try again !\n";
         cout<<"Press enter to continue\n";
         cin.get();
         cin.get();
         user_login();
-    }
+        }
 }
 
 void registration(string text, string fileName, void (*login)()) {
-    string username, password;
+    string username, password, email , phone_number;
     system("cls");
     cout<<"********************************"<< text << " " << "Panel************************************\n";
     cout<<"\nChoose a username and password \n\n";
     for(int i=0; i<=119; i++) cout<<"-";
     cout<<"\n\n\t\t\tEnter username: ";
     cin>>username;
+    cout << "\t\t\tEnter Email: ";
+    cin >> email;
+    cout << "\t\t\tEnter Phone Number: ";
+    cin >> phone_number;
     cout<<"\t\t\tEnter password: ";
     cin>>password;
 
     ofstream reg(fileName, ios::app);
-    reg<<username<<" "<<password<<endl;
+    reg << username << " " << password << " " << email << endl;
     reg.close();
     system("cls");
     cout<<"********************************"<< text << " " << "Panel************************************\n";
@@ -190,8 +210,8 @@ void admin_panel(string username) {
     cout << "Options-> \n";
     cout <<"\t1. Add Patient Information \n";
     cout <<"\t2. View Patient Information \n";
-    cout <<"\t3. Edit Patient Information \n";
-    cout <<"\t4. Add Doctor Information \n";
+    cout <<"\t3. Add Doctor Information \n";
+    cout <<"\t4. Edit Patient Information \n";
     cout <<"\t5. Search Patient Information \n";
     cout <<"\t6. Delete Patient Information \n";
     cout <<"\t7. Go back \n";
@@ -200,22 +220,22 @@ void admin_panel(string username) {
 
     switch (choice) {
     case 1:
-        cout<<"Coming soon :)";
+        PatientInformationAdd();
         break;
     case 2:
-        cout<<"Coming soon :)";
+        PatientInformationView();
         break;
     case 3:
-        cout<<"Coming soon :)";
+        cout << "Coming soon :)";
         break;
     case 4:
-        cout<<"Coming soon :)";
+        cout << "Coming soon :)";
         break;
     case 5:
-        cout<<"Coming soon :)";
+        cout << "Coming soon :)";
         break;
     case 6:
-        cout<<"Coming soon :)";
+        cout << "Coming soon :)";
         break;
     case 7:
         main();
@@ -258,4 +278,71 @@ void user_panel(string username) {
         user_panel(username);
     }
 }
+
+
+
+
+
+
+
+void PatientInformationAdd()
+{
+    ofstream patientFile("patient.txt", ios::app);
+    string patient_name, disease, age, cabin_no, phone_number;
+    cout << header << endl;
+    cout << "Patient Information Add" << endl;
+    cout << header << endl;
+    cout << "  " << endl;
+    cout << "Enter Patient's Name = " ;
+    cin >> patient_name;
+    cout << "Enter disease = ";
+    cin >> disease;
+    cout << "Enter the age =  ";
+    cin >> age;
+    cout << "Enter cabin no =  ";
+    cin >> cabin_no;
+    cout << "Enter phone number = ";
+    cin >> phone_number;
+    patientFile << patient_name << " " << disease << " " << age << " " << cabin_no << " " << phone_number << "\n";
+
+    patientFile.close();
+
+    cout << header << endl;
+    cout << "Patient's Information  Data Saved Successfully !!" << endl
+         << patient_name << endl;
+    cout << header << endl;
+}
+
+
+
+void PatientInformationView()
+{
+    ifstream patientFile("patient.txt");
+    char ch;
+    string patient_name, disease, age, cabin_no, phone_number;
+    if (!patientFile)
+    {
+        cout << "Data File Not Found !" << endl;
+        exit(1);
+    }
+    cout<<"\t\t\t********************************************************************\n";
+    cout<<"\t\t\t*            Patient Information View                              *\n";
+    cout<<"\t\t\t********************************************************************\n";
+
+    cout << "\t----------------------------------------------------------------------------------------------------------" << endl;
+
+    while (patientFile >> patient_name >> disease >> age >> cabin_no >> phone_number)
+    {
+        if (patientFile >> patient_name >> disease >> age >> cabin_no >> phone_number)
+        {
+            cout << "\t Name = " << patient_name << " \t| Disease = " << disease << " \t| Age = " << age
+                 << "  \t| Cabin no = " << cabin_no << "  \t| Phone Number no = " << phone_number <<  endl;
+        }
+    }
+    patientFile.close();
+    cout << "\t---------------------------------------------------------------------------------------------------------" << endl;
+}
+
+
+
 

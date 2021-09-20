@@ -16,13 +16,13 @@ void user_panel(string username);
 int main() {
     int choice;
     system("cls");
-    cout<<"********************************************************************\n";
-    cout<<"*                                                                  *\n";
-    cout<<"*             Welcome to Hospital Management System                *\n";
-    cout<<"*                                                                  *\n";
-    cout<<"********************************************************************\n";
-    cout<<"\n                          Dashboard                             \n\n";
-    for(int i=0; i<=84; i++) cout<<"-";
+    cout<<"\t\t\t********************************************************************\n";
+    cout<<"\t\t\t*                                                                  *\n";
+    cout<<"\t\t\t*             Welcome To Hospital Management System                *\n";
+    cout<<"\t\t\t*                                                                  *\n";
+    cout<<"\t\t\t********************************************************************\n";
+    cout<<"\n\t\t\t==>   Dashboard   <== \n\n";
+    for(int i=0; i<=119; i++) cout<<"-";
     cout<<"\n\n\t\t\t1. Admin \n";
     cout<<"\t\t\t2. User\n";
     cout<<"\t\t\t3. Choose an option to continue: ";
@@ -48,7 +48,7 @@ void admin() {
     system("cls");
     cout<<"*********************************Admin Panel*************************************\n";
     cout<<"\nOptions \n\n";
-    for(int i=0; i<=84; i++) cout<<"-";
+    for(int i=0; i<=80; i++) cout<<"-";
     cout<<"\n\n\t\t\t1. Login \n";
     cout<<"\t\t\t2. Register \n";
     cout<<"\t\t\t3. Go back \n";
@@ -76,7 +76,7 @@ void user() {
     system("cls");
     cout<<"********************************User Panel************************************\n";
     cout<<"\nOptions \n\n";
-    for(int i=0; i<=84; i++) cout<<"-";
+    for(int i=0; i<=80; i++) cout<<"-";
     cout<<"\n\n\t\t\t1. Login \n";
     cout<<"\t\t\t2. Register \n";
     cout<<"\t\t\t3. Go back \n";
@@ -164,7 +164,7 @@ void registration(string text, string fileName, void (*login)()) {
     system("cls");
     cout<<"********************************"<< text << " " << "Panel************************************\n";
     cout<<"\nChoose a username and password \n\n";
-    for(int i=0; i<=84; i++) cout<<"-";
+    for(int i=0; i<=119; i++) cout<<"-";
     cout<<"\n\n\t\t\tEnter username: ";
     cin>>username;
     cout<<"\t\t\tEnter password: ";
@@ -194,7 +194,7 @@ void admin_panel(string username) {
     cout <<"\t4. Add Doctor Information \n";
     cout <<"\t5. Search Patient Information \n";
     cout <<"\t6. Delete Patient Information \n";
-    cout <<"\t7. logout \n";
+    cout <<"\t7. Go back \n";
     cout <<"\t8. Choose an option to continue: ";
     cin>>choice;
 
@@ -236,7 +236,7 @@ void user_panel(string username) {
     cout<<"\t2. Doctor Schedule \n";
     cout<<"\t2. Doctor Fee's \n";
     cout<<"\t2. Booking \n";
-    cout<<"\t3. Logout \n";
+    cout<<"\t3. Go back \n";
     cout<<"\t9. Choose an option to continue: ";
     cin>>choice;
 
